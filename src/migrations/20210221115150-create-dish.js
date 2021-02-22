@@ -25,8 +25,14 @@ module.exports = {
         timeEat: {
           type: Sequelize.ENUM("MORNING", "LUNCH", "DINNER", "ALL_DAY"),
         },
+        userId: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: { model: "Users" },
+        },
         kitchenId: {
           type: Sequelize.INTEGER,
+          allowNull: false,
           references: { model: "Kitchens" },
         },
       },

@@ -25,7 +25,7 @@ module.exports = {
           allowNull: false,
         },
         target: {
-          type: Sequelize.STRING(30),
+          type: Sequelize.ENUM("DISH", "RECIPE", "USER"),
           allowNull: false,
         },
         modelId: {

@@ -22,6 +22,11 @@ module.exports = {
         image: {
           type: Sequelize.STRING,
         },
+        userId: {
+          type: Sequelize.INTEGER,
+          allowNull: false,
+          references: { model: "Users" },
+        },
         stepId: {
           type: Sequelize.INTEGER,
           references: { model: "Steps" },
