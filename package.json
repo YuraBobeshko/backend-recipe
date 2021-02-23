@@ -1,5 +1,5 @@
 {
-  "name": "backend-text-quest",
+  "name": "backend-recipe",
   "version": "1.0.0",
   "description": "",
   "main": "./src/server.js",
@@ -9,18 +9,20 @@
     "db:create": "sequelize db:create",
     "db:migrate": "sequelize db:migrate",
     "db:seed": "sequelize db:seed:all",
-    "db:migrate:undo": "sequelize db:migrate:undo"
+    "db:migrate:undo": "sequelize db:migrate:undo",
+    "db:clear": "node -r babel-register -r dotenv/config ./src/scripts/clearDB.js",
+    "db:fresh": "npm run db:clear && npm run db:migrate && npm run db:seed"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/YuraBobeshko/backend-text-quest.git"
+    "url": "git+https://github.com/YuraBobeshko/backend-recipe.git"
   },
   "author": "Yura Bobeshko",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/YuraBobeshko/backend-text-quest/issues"
+    "url": "https://github.com/YuraBobeshko/backend-recipe/issues"
   },
-  "homepage": "https://github.com/YuraBobeshko/backend-text-quest#readme",
+  "homepage": "https://github.com/YuraBobeshko/backend-recipe#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
