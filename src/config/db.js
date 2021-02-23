@@ -7,7 +7,6 @@ module.exports = {
     dialect: "mysql",
     operatorsAliases: 0,
     seederStorage: "sequelize",
-    logging: false,
   },
   test: {
     username: "root",
@@ -24,6 +23,5 @@ module.exports = {
     dialect: "mysql",
     seederStorage: "sequelize",
     operatorsAliases: 0,
-    logging: false,
   },
 };
