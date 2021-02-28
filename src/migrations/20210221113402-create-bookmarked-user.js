@@ -4,16 +4,18 @@ module.exports = {
     await queryInterface.createTable(
       "BookmarkedUsers",
       {
-        userId: {
+        Id: {
           type: Sequelize.INTEGER,
           allowNull: false,
           primaryKey: true,
+          onDelete: "CASCADE",
           references: { model: "Users" },
         },
-        bookmarkedUserId: {
+        UserId: {
           type: Sequelize.INTEGER,
           allowNull: false,
           primaryKey: true,
+          onDelete: "CASCADE",
           references: { model: "Users" },
         },
       },

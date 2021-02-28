@@ -31,10 +31,12 @@ module.exports = {
         modelId: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          onDelete: "CASCADE",
         },
         userId: {
           type: Sequelize.INTEGER,
           allowNull: false,
+          onDelete: "CASCADE",
           references: { model: "Users" },
         },
         createdAt: {

@@ -25,6 +25,7 @@ module.exports = {
           type: Sequelize.FLOAT,
           allowNull: false,
         },
+        nextStepId: { type: Sequelize.INTEGER, references: { model: "Steps" } },
       },
       {
         charset: "utf8",

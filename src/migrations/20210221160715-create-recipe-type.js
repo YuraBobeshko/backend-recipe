@@ -6,12 +6,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        onDelete: "CASCADE",
         references: { model: "Recipes" },
       },
       typeID: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        onDelete: "CASCADE",
         references: { model: "Types" },
       },
     });

@@ -7,11 +7,13 @@ module.exports = {
         allowNull: false,
         primaryKey: true,
         references: { model: "Dishes" },
+        onDelete: "CASCADE",
       },
       typeID: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
+        onDelete: "CASCADE",
         references: { model: "Types" },
       },
     });

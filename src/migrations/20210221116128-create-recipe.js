@@ -22,13 +22,19 @@ module.exports = {
         image: {
           type: Sequelize.STRING,
         },
+        dishId: {
+          type: Sequelize.INTEGER,
+          onDelete: "SET NULL",
+          references: { model: "Dishes" },
+        },
         userId: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          onDelete: "SET NULL",
           references: { model: "Users" },
         },
         stepId: {
           type: Sequelize.INTEGER,
+          onDelete: "SET NULL",
           references: { model: "Steps" },
         },
         createdAt: {

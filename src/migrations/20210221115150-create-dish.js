@@ -27,12 +27,12 @@ module.exports = {
         },
         userId: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          onDelete: "SET NULL",
           references: { model: "Users" },
         },
         kitchenId: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          onDelete: "SET NULL",
           references: { model: "Kitchens" },
         },
       },
