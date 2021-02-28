@@ -9,7 +9,6 @@
     "db:create": "sequelize db:create",
     "db:migrate": "sequelize db:migrate",
     "db:seed": "sequelize db:seed:all",
-    "db:migrate:undo": "sequelize db:migrate:undo",
     "db:clear": "node -r babel-register -r dotenv/config ./src/scripts/clearDB.js",
     "db:fresh": "npm run db:clear && npm run db:migrate && npm run db:seed"
   },

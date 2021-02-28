@@ -1,6 +1,6 @@
-export default (app) => {
-  const comments = require("../controllers/comment");
+import comments from "../controllers/comment";
 
+export default (app) => {
   const router = require("express").Router();
 
   // Retrieve all Comments
@@ -9,20 +9,15 @@ export default (app) => {
   // Create a new Comment
   router.post("/add", comments.create);
 
-  // // Retrieve all published Tutorials
-  // router.get("/published", tutorials.findAllPublished);
+  // // Retrieve a single Comment with id
+  // router.get("/:id", comments.findOne);
 
-  // // Retrieve a single Tutorial with id
-  // router.get("/:id", tutorials.findOne);
+  // // Update a Comment with id
+  // router.put("/:id", comments.update);
 
-  // // Update a Tutorial with id
-  // router.put("/:id", tutorials.update);
+  // // Delete a Comment with id
+  // router.delete("/:id", comments.delete);
 
-  // // Delete a Tutorial with id
-  // router.delete("/:id", tutorials.delete);
-
-  // // Delete all Tutorials
-  // router.delete("/", tutorials.deleteAll);
 
   app.use("/api/comments", router);
 };

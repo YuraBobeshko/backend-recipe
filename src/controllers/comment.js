@@ -3,7 +3,7 @@ import { Comment, Sequelize } from "../models";
 const Op = Sequelize.Op;
 
 // Create and Save a new Comment
-exports.create = (req, res) => {
+const create = (req, res) => {
   // Validate request
   if (!req.body.title) {
     res.status(400).send({
@@ -31,7 +31,8 @@ exports.create = (req, res) => {
     });
 };
 
-exports.findAll = (req, res) => {
+// Get all comments from database
+const findAll = (req, res) => {
   //   const title = req.query.title;
   //   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
 
@@ -47,3 +48,5 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
+export default { create, findAll };
