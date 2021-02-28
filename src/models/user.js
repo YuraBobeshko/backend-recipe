@@ -1,14 +1,14 @@
 "use strict";
-const { Model } = require("sequelize");
+import { Model } from "sequelize";
 
 export default class User extends Model {
   static init(sequelize, DataTypes) {
     return super.init(
       {
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING,
+        firstName: { type: DataTypes.STRING(30), allowNull: false },
+        lastName: { type: DataTypes.STRING(30), allowNull: false },
         email: {
-          type: DataTypes.STRING,
+          type: DataTypes.STRING(80),
           unique: true,
           validate: {
             isEmail: true,
@@ -31,49 +31,35 @@ export default class User extends Model {
     );
   }
 
-  static associate(sequelize, DataTypes) {
-    // define association here
-  }
-
-  static generatePassword() {
-    const password = generator.generate({ length: 10, numbers: true });
-    return {
-      password,
-      passwordHash: crypt.generate(password, { saltLength: 13 }),
-    };
-  }
-
-  async validatePassword(password) {
-    return crypt.verify(password, this.passwordHash);
-  }
-
-  static hashPassword(password) {
-    return crypt.generate(password, { saltLength: 13 });
-  }
-
-  static getUserByToken(token) {
-    return new Promise((resolve, reject) => {
-      jwt.verify(token, authorizationTokenSecret, async (error, authKey) => {
-        if (error) {
-          return resolve(null);
-        }
-        const user = await this.findOne({
-          where: {
-            authKey: authKey.data,
-          },
-        });
-
-        if (!user) {
-          return resolve(null);
-        }
-
-        return resolve(user);
-      });
+  static associate(models) {
+    this.hasMany(models.Dish);
+    this.hasMany(models.Recipe);
+    this.hasMany(models.BookmarkedUser, {
+      foreignKey: "selecterId",
+      as: "selecterId",
+    });
+    this.hasMany(models.BookmarkedUser, {
+      foreignKey: "selectedId",
+      as: "selectedId",
+    });
+    this.hasMany(models.Comment, {
+      foreignKey: "modelId",
+      constraints: false,
+      scope: {
+        commentable: "user",
+      },
+    });
+    this.belongsToMany(models.User, {
+      through: "BookmarkedUser",
+      as: "bookmarkedUsers",
+    });
+    this.belongsToMany(models.Dish, {
+      through: "BookmarkedDish",
+      as: "bookmarkedDishes",
+    });
+    this.belongsToMany(models.Dish, {
+      through: "BookmarkedRecipe",
+      as: "bookmarkedRecipes",
     });
   }
-
-  login = () =>
-    jwt.sign({ data: this.authKey }, authorizationTokenSecret, {
-      expiresIn: authorizationTokenExpire,
-    });
 }
