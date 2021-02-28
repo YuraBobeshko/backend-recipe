@@ -2,12 +2,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-
-import commentRouters from "./routes/comment.routers";
+import routes from "./routes";
 
 const app = express();
 
-// destroy CORS
 app.use(cors());
 
 // parse requests of content-type - application/json
@@ -16,15 +14,12 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// main page
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my application!" });
 });
 
-// all routes
-commentRouters(app);
+routes.forEach((route) => route(app));
 
-// set port, listen for requests
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {

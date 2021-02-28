@@ -1,23 +1,17 @@
-import comments from "../controllers/comment";
+import comment from "../controllers/comment.controllers";
 
 export default (app) => {
   const router = require("express").Router();
 
-  // Retrieve all Comments
-  router.get("/", comments.findAll);
+  router.get("/", comment.findAll);
 
-  // Create a new Comment
-  router.post("/add", comments.create);
+  router.post("/add", comment.create);
 
-  // // Retrieve a single Comment with id
-  // router.get("/:id", comments.findOne);
+  router.get("/:id", comment.getOne);
 
-  // // Update a Comment with id
-  // router.put("/:id", comments.update);
+  router.put("/:id", comment.update);
 
-  // // Delete a Comment with id
-  // router.delete("/:id", comments.delete);
-
+  router.delete("/:id", comment.destroy);
 
   app.use("/api/comments", router);
 };
